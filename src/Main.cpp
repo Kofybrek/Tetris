@@ -124,6 +124,7 @@ int main()
 							//If it's C or Z
 							case sf::Keyboard::C:
 							case sf::Keyboard::Z:
+							case sf::Keyboard::Up:
 							{
 								//Rotation key is not pressed anymore
 								rotate_pressed = 0;
@@ -168,7 +169,8 @@ int main()
 					if (0 == rotate_pressed)
 					{
 						//If the C is pressed
-						if (sf::Keyboard::isKeyPressed(sf::Keyboard::C))
+						if (sf::Keyboard::isKeyPressed(sf::Keyboard::C) ||
+							sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
 						{
 							//Rotation key is pressed!
 							rotate_pressed = 1;
