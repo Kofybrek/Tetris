@@ -1,9 +1,9 @@
 #include <vector>
 
-#include "Headers/Global.hpp"
-#include "Headers/GetTetromino.hpp"
-#include "Headers/GetWallKickData.hpp"
-#include "Headers/Tetromino.hpp"
+#include "Global.hpp"
+#include "GetTetromino.hpp"
+#include "GetWallKickData.hpp"
+#include "Tetromino.hpp"
 
 Tetromino::Tetromino(unsigned char i_shape, const std::vector<std::vector<unsigned char>>& i_matrix) :
 	rotation(0),

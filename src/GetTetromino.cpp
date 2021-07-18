@@ -1,7 +1,7 @@
 #include <vector>
 
-#include "Headers/Global.hpp"
-#include "Headers/GetTetromino.hpp"
+#include "Global.hpp"
+#include "GetTetromino.hpp"
 
 std::vector<Position> get_tetromino(unsigned char i_shape, unsigned char i_x, unsigned char i_y)
 {

@@ -8,11 +8,10 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 find_package(SFML 2.5 REQUIRED COMPONENTS graphics window)
 
 add_executable(tetris
-    Source/DrawText.cpp
-    Source/GetTetromino.cpp
-    Source/GetWallKickData.cpp
-    Source/Main.cpp
-    Source/Tetromino.cpp)
-target_include_directories(tetris PRIVATE Source/Headers)
+    src/DrawText.cpp
+    src/GetTetromino.cpp
+    src/GetWallKickData.cpp
+    src/Main.cpp
+    src/Tetromino.cpp)
 target_link_libraries(tetris PRIVATE sfml-graphics sfml-window)
 install(TARGETS tetris)

@@ -1,6 +1,6 @@
 #include <SFML/Graphics.hpp>
 
-#include "Headers/DrawText.hpp"
+#include "DrawText.hpp"
 
 void draw_text(unsigned short i_x, unsigned short i_y, const std::string& i_text, sf::RenderWindow& i_window)
 {
@@ -13,7 +13,7 @@ void draw_text(unsigned short i_x, unsigned short i_y, const std::string& i_text
 	sf::Sprite character_sprite;
 
 	sf::Texture font_texture;
-	font_texture.loadFromFile("Resources/Images/Font.png");
+	font_texture.loadFromFile("data/Font.png");
 
 	//We're gonna calculate the width of the character based on the font image size
 	//96 because there are 96 character in the image
