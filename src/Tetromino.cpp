@@ -263,7 +263,7 @@ void Tetromino::rotate(bool i_clockwise, const Matrix& i_matrix)
 			}
 
 			//If we can turn
-			if (1 == can_turn)
+			if (can_turn)
 			{
 				//We turn
 				rotation = next_rotation;
@@ -306,7 +306,7 @@ std::vector<Position> Tetromino::get_ghost_minos(const Matrix& i_matrix)
 
 	std::vector<Position> ghost_minos = minos;
 
-	while (1 == keep_falling)
+	while (keep_falling)
 	{
 		total_movement++;
 

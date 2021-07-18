@@ -84,7 +84,7 @@ int main()
 	previous_time = std::chrono::steady_clock::now();
 
 	//While the window is open
-	while (1 == window.isOpen())
+	while (window.isOpen())
 	{
 		//Get the difference in time between the current frame and the previous frame
 		unsigned delta_time = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::steady_clock::now() - previous_time).count();
@@ -102,7 +102,7 @@ int main()
 			lag -= FRAME_DURATION;
 
 			//Looping through the events
-			while (1 == window.pollEvent(event))
+			while (window.pollEvent(event))
 			{
 				//Check the event type
 				switch (event.type)
@@ -168,7 +168,7 @@ int main()
 					if (0 == rotate_pressed)
 					{
 						//If the C is pressed
-						if (1 == sf::Keyboard::isKeyPressed(sf::Keyboard::C))
+						if (sf::Keyboard::isKeyPressed(sf::Keyboard::C))
 						{
 							//Rotation key is pressed!
 							rotate_pressed = 1;
@@ -176,7 +176,7 @@ int main()
 							//Do a barrel roll
 							tetromino.rotate(1, matrix);
 						} //Else, if the Z is pressed
-						else if (1 == sf::Keyboard::isKeyPressed(sf::Keyboard::Z))
+						else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z))
 						{
 							//Rotation key is pressed!
 							rotate_pressed = 1;
@@ -190,7 +190,7 @@ int main()
 					if (0 == move_timer)
 					{
 						//If the Left is pressed
-						if (1 == sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+						if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
 						{
 							//Reset the move timer
 							move_timer = 1;
@@ -198,7 +198,7 @@ int main()
 							//Move the tetromino to the left
 							tetromino.move_left(matrix);
 						}
-						else if (1 == sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+						else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
 						{
 							//Reset the move timer
 							move_timer = 1;
@@ -217,7 +217,7 @@ int main()
 					if (0 == hard_drop_pressed)
 					{
 						//But the Space is pressed, which is the hard drop key (Paradox?)
-						if (1 == sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
+						if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
 						{
 							//Get rid of the paradox!
 							hard_drop_pressed = 1;
@@ -233,9 +233,9 @@ int main()
 					//I don't wanna rewrite the same thing again so just look at the comments above and use your head
 					if (0 == soft_drop_timer)
 					{
-						if (1 == sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+						if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
 						{
-							if (1 == tetromino.move_down(matrix))
+							if (tetromino.move_down(matrix))
 							{
 								fall_timer = 0;
 								soft_drop_timer = 1;
@@ -274,7 +274,7 @@ int main()
 								}
 
 								//If we have to clear it
-								if (1 == clear_line)
+								if (clear_line)
 								{
 									//WE CLEAR IT!
 									//First we increase the score
@@ -316,7 +316,7 @@ int main()
 						fall_timer++;
 					}
 				} //This is the code for restarting the game
-				else if (1 == sf::Keyboard::isKeyPressed(sf::Keyboard::Enter))
+				else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter))
 				{
 					//We set everything to 0
 					game_over = 0;
@@ -350,7 +350,7 @@ int main()
 					for (unsigned char a = 0; a < ROWS; a++)
 					{
 						//If the row should be cleared
-						if (1 == clear_lines[a])
+						if (clear_lines[a])
 						{
 							//Loop through each cell in the row
 							for (unsigned char b = 0; b < COLUMNS; b++)
@@ -404,7 +404,7 @@ int main()
 						{
 							cell.setPosition(static_cast<float>(CELL_SIZE * a), static_cast<float>(CELL_SIZE * b));
 
-							if (1 == game_over && 0 < matrix[a][b])
+							if (game_over && 0 < matrix[a][b])
 							{
 								cell.setFillColor(cell_colors[8]);
 							}
@@ -448,7 +448,7 @@ int main()
 				{
 					for (unsigned char b = 0; b < ROWS; b++)
 					{
-						if (1 == clear_lines[b])
+						if (clear_lines[b])
 						{
 							cell.setFillColor(cell_colors[0]);
 							cell.setPosition(static_cast<float>(CELL_SIZE * a), static_cast<float>(CELL_SIZE * b));
