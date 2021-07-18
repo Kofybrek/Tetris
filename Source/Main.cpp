@@ -2,10 +2,10 @@
 #include <random>
 #include <SFML/Graphics.hpp>
 
-#include "Headers/Draw text.hpp"
+#include "Headers/DrawText.hpp"
 #include "Headers/Global.hpp"
-#include "Headers/Get tetromino.hpp"
-#include "Headers/Get wall kick data.hpp"
+#include "Headers/GetTetromino.hpp"
+#include "Headers/GetWallKickData.hpp"
 #include "Headers/Tetromino.hpp"
 
 int main()
