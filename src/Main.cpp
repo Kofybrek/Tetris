@@ -1,4 +1,3 @@
-#include <chrono>
 #include <random>
 #include <SFML/Graphics.hpp>
 
@@ -18,7 +17,7 @@ int main()
 	bool rotate_pressed = 0;
 
 	//Used to make the game framerate-independent
-	unsigned lag = 0;
+	auto lag = std::chrono::microseconds(0);
 	//How many lines the player cleared?
 	unsigned lines_cleared = 0;
 
@@ -34,9 +33,6 @@ int main()
 	unsigned char next_shape;
 	//Timer for the tetromino's soft drop
 	unsigned char soft_drop_timer = 0;
-
-	//Similar to lag, used to make the game framerate-independent
-	std::chrono::time_point<std::chrono::steady_clock> previous_time;
 
 	//I don't really know what this does, so I'm gonna assume this is a random device
 	std::random_device random_device;
@@ -80,20 +76,20 @@ int main()
 	//Generate a random shape and store it as the next shape
 	next_shape = static_cast<unsigned char>(shape_distribution(random_engine));
 
-	//Get the current time and store it in the variable
-	previous_time = std::chrono::steady_clock::now();
+	//Similar to lag, used to make the game framerate-independent
+	std::chrono::time_point<std::chrono::steady_clock> previous_time = std::chrono::steady_clock::now();
 
 	//While the window is open
 	while (window.isOpen())
 	{
 		//Get the difference in time between the current frame and the previous frame
-		unsigned delta_time = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::steady_clock::now() - previous_time).count();
+		const auto delta_time = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::steady_clock::now() - previous_time);
 
 		//Add the difference to the lag
 		lag += delta_time;
 
 		//In other words, we're updating the current time for the next frame.
-		previous_time += std::chrono::microseconds(delta_time);
+		previous_time += delta_time;
 
 		//While the lag exceeds the maximum allowed frame duration
 		while (FRAME_DURATION <= lag)

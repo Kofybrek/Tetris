@@ -1,6 +1,7 @@
 #pragma once
 
 #include <array>
+#include <chrono>
 
 //The size of the cell
 constexpr unsigned char CELL_SIZE = 8;
@@ -22,7 +23,7 @@ constexpr unsigned char SOFT_DROP_SPEED = 4;
 constexpr unsigned char START_FALL_SPEED = 32;
 
 //The duration of every frame
-constexpr unsigned short FRAME_DURATION = 16667;
+static const auto FRAME_DURATION = std::chrono::microseconds(16667);
 
 //I just realized I could use the Vector2 in the SFML! I'M SO STUPID!
 struct Position
