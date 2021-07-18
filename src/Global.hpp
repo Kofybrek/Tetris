@@ -1,5 +1,7 @@
 #pragma once
 
+#include <array>
+
 //The size of the cell
 constexpr unsigned char CELL_SIZE = 8;
 //The duration of the line clearing effect
@@ -28,3 +30,5 @@ struct Position
 	char x;
 	char y;
 };
+
+using Matrix = std::array<std::array<unsigned char, ROWS>, COLUMNS>;

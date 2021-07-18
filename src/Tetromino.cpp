@@ -5,7 +5,7 @@
 #include "GetWallKickData.hpp"
 #include "Tetromino.hpp"
 
-Tetromino::Tetromino(unsigned char i_shape, const std::vector<std::vector<unsigned char>>& i_matrix) :
+Tetromino::Tetromino(unsigned char i_shape, const Matrix& i_matrix) :
 	rotation(0),
 	shape(i_shape),
 	minos(get_tetromino(i_shape, COLUMNS / 2, 1))
@@ -30,7 +30,7 @@ Tetromino::Tetromino(unsigned char i_shape, const std::vector<std::vector<unsign
 	*/
 }
 
-bool Tetromino::move_down(const std::vector<std::vector<unsigned char>>& i_matrix)
+bool Tetromino::move_down(const Matrix& i_matrix)
 {
 	for (Position& mino : minos)
 	{
@@ -57,7 +57,7 @@ bool Tetromino::move_down(const std::vector<std::vector<unsigned char>>& i_matri
 	return 1;
 }
 
-bool Tetromino::reset(unsigned char i_shape, const std::vector<std::vector<unsigned char>>& i_matrix)
+bool Tetromino::reset(unsigned char i_shape, const Matrix& i_matrix)
 {
 	//Reset the variables
 	rotation = 0;
@@ -84,13 +84,13 @@ unsigned char Tetromino::get_shape()
 	return shape;
 }
 
-void Tetromino::hard_drop(const std::vector<std::vector<unsigned char>>& i_matrix)
+void Tetromino::hard_drop(const Matrix& i_matrix)
 {
 	//I'm so smart. I used the ghost tetromino function to make the hard drop function
 	minos = get_ghost_minos(i_matrix);
 }
 
-void Tetromino::move_left(const std::vector<std::vector<unsigned char>>& i_matrix)
+void Tetromino::move_left(const Matrix& i_matrix)
 {
 	//This is similar to the move down function so I'm not gonna explain anything here. Bite me!
 	for (Position& mino : minos)
@@ -116,7 +116,7 @@ void Tetromino::move_left(const std::vector<std::vector<unsigned char>>& i_matri
 	}
 }
 
-void Tetromino::move_right(const std::vector<std::vector<unsigned char>>& i_matrix)
+void Tetromino::move_right(const Matrix& i_matrix)
 {
 	//Hello!
 	for (Position& mino : minos)
@@ -142,7 +142,7 @@ void Tetromino::move_right(const std::vector<std::vector<unsigned char>>& i_matr
 	}
 }
 
-void Tetromino::rotate(bool i_clockwise, const std::vector<std::vector<unsigned char>>& i_matrix)
+void Tetromino::rotate(bool i_clockwise, const Matrix& i_matrix)
 {
 	//I don't even wanna explain this. I spent way too much time writing this
 	if (3 != shape)
@@ -283,7 +283,7 @@ void Tetromino::rotate(bool i_clockwise, const std::vector<std::vector<unsigned 
 	}
 }
 
-void Tetromino::update_matrix(std::vector<std::vector<unsigned char>>& i_matrix)
+void Tetromino::update_matrix(Matrix& i_matrix)
 {
 	//Putting the tetromino to the matrix
 	for (Position& mino : minos)
@@ -297,7 +297,7 @@ void Tetromino::update_matrix(std::vector<std::vector<unsigned char>>& i_matrix)
 	}
 }
 
-std::vector<Position> Tetromino::get_ghost_minos(const std::vector<std::vector<unsigned char>>& i_matrix)
+std::vector<Position> Tetromino::get_ghost_minos(const Matrix& i_matrix)
 {
 	//We're just moving the tetromino down until it hits something. Then we're returning it's position
 	bool keep_falling = 1;

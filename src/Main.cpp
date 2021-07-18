@@ -64,7 +64,7 @@ int main()
 	};
 
 	//Game matrix. Everything will happen to this matrix
-	std::vector<std::vector<unsigned char>> matrix(COLUMNS, std::vector<unsigned char>(ROWS));
+	Matrix matrix{};
 
 	//SFML thing. Stores events, I think
 	sf::Event event;
@@ -332,7 +332,7 @@ int main()
 					soft_drop_timer = 0;
 
 					//Then we clear the matrix
-					for (std::vector<unsigned char>& a : matrix)
+					for (auto& a : matrix)
 					{
 						std::fill(a.begin(), a.end(), 0);
 					}
