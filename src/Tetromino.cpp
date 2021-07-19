@@ -37,13 +37,13 @@ bool Tetromino::move_down(const Matrix& i_matrix)
 		//Will we go outside the matrix if we move down?
 		if (ROWS == 1 + mino.y)
 		{
-			return 0;
+			return false;
 		}
 
 		//Will we hit another tetromino if we move down?
 		if (0 < i_matrix[mino.x][1 + mino.y])
 		{
-			return 0;
+			return false;
 		}
 	}
 
@@ -54,7 +54,7 @@ bool Tetromino::move_down(const Matrix& i_matrix)
 	}
 
 	//Return that everything is okay
-	return 1;
+	return true;
 }
 
 bool Tetromino::reset(unsigned char i_shape, const Matrix& i_matrix)
@@ -70,12 +70,12 @@ bool Tetromino::reset(unsigned char i_shape, const Matrix& i_matrix)
 		if (0 < i_matrix[mino.x][mino.y])
 		{
 			//Return that we can't reset because there's a tetromino at the spawn location
-			return 0;
+			return false;
 		}
 	}
 
 	//Return that everything is fine
-	return 1;
+	return true;
 }
 
 unsigned char Tetromino::get_shape()
@@ -238,14 +238,14 @@ void Tetromino::rotate(bool i_clockwise, const Matrix& i_matrix)
 		//We try every vector from the wall kick data
 		for (Position& wall_kick : get_wall_kick_data(0 == shape, rotation, next_rotation))
 		{
-			bool can_turn = 1;
+			bool can_turn = true;
 
 			for (Position& mino : minos)
 			{
 				//Here we're checking every collision that can happen
 				if (0 > mino.x + wall_kick.x || COLUMNS <= mino.x + wall_kick.x || ROWS <= mino.y + wall_kick.y)
 				{
-					can_turn = 0;
+					can_turn = false;
 
 					break;
 				}
@@ -256,7 +256,7 @@ void Tetromino::rotate(bool i_clockwise, const Matrix& i_matrix)
 				}
 				else if (0 < i_matrix[mino.x + wall_kick.x][mino.y + wall_kick.y])
 				{
-					can_turn = 0;
+					can_turn = false;
 
 					break;
 				}
@@ -300,7 +300,7 @@ void Tetromino::update_matrix(Matrix& i_matrix)
 std::array<Position, 4> Tetromino::get_ghost_minos(const Matrix& i_matrix)
 {
 	//We're just moving the tetromino down until it hits something. Then we're returning it's position
-	bool keep_falling = 1;
+	bool keep_falling = true;
 
 	unsigned char total_movement = 0;
 
@@ -314,7 +314,7 @@ std::array<Position, 4> Tetromino::get_ghost_minos(const Matrix& i_matrix)
 		{
 			if (ROWS == total_movement + mino.y)
 			{
-				keep_falling = 0;
+				keep_falling = false;
 
 				break;
 			}
@@ -325,7 +325,7 @@ std::array<Position, 4> Tetromino::get_ghost_minos(const Matrix& i_matrix)
 			}
 			else if (0 < i_matrix[mino.x][total_movement + mino.y])
 			{
-				keep_falling = 0;
+				keep_falling = false;
 
 				break;
 			}

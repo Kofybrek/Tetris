@@ -10,11 +10,11 @@
 int main()
 {
 	//Used to check whether the game is over or not
-	bool game_over = 0;
+	bool game_over = false;
 	//Is the hard drop button pressed?
-	bool hard_drop_pressed = 0;
+	bool hard_drop_pressed = false;
 	//Is the rotate button pressed?
-	bool rotate_pressed = 0;
+	bool rotate_pressed = false;
 
 	//Used to make the game framerate-independent
 	auto lag = std::chrono::microseconds(0);
@@ -123,7 +123,7 @@ int main()
 							case sf::Keyboard::Up:
 							{
 								//Rotation key is not pressed anymore
-								rotate_pressed = 0;
+								rotate_pressed = false;
 
 								break;
 							}
@@ -148,7 +148,7 @@ int main()
 							case sf::Keyboard::Space:
 							{
 								//Hard drop key is not pressed anymore
-								hard_drop_pressed = 0;
+								hard_drop_pressed = false;
 							}
 						}
 					}
@@ -169,7 +169,7 @@ int main()
 							sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
 						{
 							//Rotation key is pressed!
-							rotate_pressed = 1;
+							rotate_pressed = true;
 
 							//Do a barrel roll
 							tetromino.rotate(1, matrix);
@@ -177,7 +177,7 @@ int main()
 						else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z))
 						{
 							//Rotation key is pressed!
-							rotate_pressed = 1;
+							rotate_pressed = true;
 
 							//Do a barrel roll but to the other side!
 							tetromino.rotate(0, matrix);
@@ -218,7 +218,7 @@ int main()
 						if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
 						{
 							//Get rid of the paradox!
-							hard_drop_pressed = 1;
+							hard_drop_pressed = true;
 
 							//Reset the fall timer
 							fall_timer = current_fall_speed;
@@ -265,7 +265,7 @@ int main()
 								{
 									if (0 == matrix[b][a])
 									{
-										clear_line = 0;
+										clear_line = false;
 
 										break;
 									}
@@ -282,7 +282,7 @@ int main()
 									clear_effect_timer = CLEAR_EFFECT_DURATION;
 
 									//Set the current row as the row that should be cleared
-									clear_lines[a] = 1;
+									clear_lines[a] = true;
 
 									//If the player reached a certain number of lines
 									if (0 == lines_cleared % LINES_TO_INCREASE_SPEED)
@@ -317,9 +317,9 @@ int main()
 				else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter))
 				{
 					//We set everything to 0
-					game_over = 0;
-					hard_drop_pressed = 0;
-					rotate_pressed = 0;
+					game_over = false;
+					hard_drop_pressed = false;
+					rotate_pressed = false;
 
 					lines_cleared = 0;
 
