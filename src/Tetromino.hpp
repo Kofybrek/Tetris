@@ -1,11 +1,13 @@
 #pragma once
 
+#include <array>
+
 class Tetromino
 {
 	unsigned char rotation;
 	unsigned char shape;
 
-	std::vector<Position> minos;
+	std::array<Position, 4> minos;
 public:
 	Tetromino(unsigned char i_shape, const Matrix& i_matrix);
 
@@ -20,6 +22,6 @@ public:
 	void rotate(bool i_clockwise, const Matrix& i_matrix);
 	void update_matrix(Matrix& i_matrix);
 
-	std::vector<Position> get_ghost_minos(const Matrix& i_matrix);
-	std::vector<Position> get_minos();
+	std::array<Position, 4> get_ghost_minos(const Matrix& i_matrix);
+	std::array<Position, 4> get_minos();
 };

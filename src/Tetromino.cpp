@@ -149,7 +149,7 @@ void Tetromino::rotate(bool i_clockwise, const Matrix& i_matrix)
 	{
 		unsigned char next_rotation;
 
-		std::vector<Position> current_minos = minos;
+		std::array<Position, 4> current_minos = minos;
 
 		//Calculating the next rotation state
 		if (0 == i_clockwise)
@@ -297,14 +297,14 @@ void Tetromino::update_matrix(Matrix& i_matrix)
 	}
 }
 
-std::vector<Position> Tetromino::get_ghost_minos(const Matrix& i_matrix)
+std::array<Position, 4> Tetromino::get_ghost_minos(const Matrix& i_matrix)
 {
 	//We're just moving the tetromino down until it hits something. Then we're returning it's position
 	bool keep_falling = 1;
 
 	unsigned char total_movement = 0;
 
-	std::vector<Position> ghost_minos = minos;
+	std::array<Position, 4> ghost_minos = minos;
 
 	while (keep_falling)
 	{
@@ -340,7 +340,7 @@ std::vector<Position> Tetromino::get_ghost_minos(const Matrix& i_matrix)
 	return ghost_minos;
 }
 
-std::vector<Position> Tetromino::get_minos()
+std::array<Position, 4> Tetromino::get_minos()
 {
 	//Return minos (I'm so good at explaining stuff!)
 	return minos;

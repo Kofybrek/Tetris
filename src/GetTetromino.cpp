@@ -1,12 +1,10 @@
-#include <vector>
-
 #include "Global.hpp"
 #include "GetTetromino.hpp"
 
-std::vector<Position> get_tetromino(unsigned char i_shape, unsigned char i_x, unsigned char i_y)
+std::array<Position, 4> get_tetromino(unsigned char i_shape, unsigned char i_x, unsigned char i_y)
 {
 	//I'm pretty sure the code is self-explanatory
-	std::vector<Position> output_tetromino(4);
+	std::array<Position, 4> output_tetromino;
 
 	//We just set the relative position for every mino
 	switch (i_shape)
