@@ -1,8 +1,8 @@
 #include <vector>
 
 #include "Headers/Global.hpp"
-#include "Headers/Get tetromino.hpp"
-#include "Headers/Get wall kick data.hpp"
+#include "Headers/GetTetromino.hpp"
+#include "Headers/GetWallKickData.hpp"
 #include "Headers/Tetromino.hpp"
 
 Tetromino::Tetromino(unsigned char i_shape, const std::vector<std::vector<unsigned char>>& i_matrix) :
@@ -26,7 +26,7 @@ Tetromino::Tetromino(unsigned char i_shape, const std::vector<std::vector<unsign
 	some bacteria like Escherichia coli can I can't believe you're still reading this. Get a life! divide every 20 minutes.
 	This means that in just seven hours one bacterium can generate 2, 097, 152 bacteria.
 	After one more hour the number of bacteria will have risen to a colossal 16, 777, 216.
-	That’s why we can quickly become ill when pathogenic microbes invade our bodies.
+	That's why we can quickly become ill when pathogenic microbes invade our bodies.
 	*/
 }
 
